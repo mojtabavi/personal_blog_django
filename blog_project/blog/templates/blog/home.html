@@ -1,8 +1,12 @@
+<center>
 {% for article in articles%}
+
     <article>
-        <img src="{{article.img}}" alt="{{article.title}}">
-        <h1>{{article.title}}</h1>
+        <img src="{{article.thumbnail.url}}" alt="{{article.title}}" width="300px">
+        <h1><a href="{{article.slug}}">{{article.title}}</a></h1>
+        <small>{{article.publish}}</small>
         <p>{{article.description}}</p>
     </article>
 
 {% endfor %}
+</center>
