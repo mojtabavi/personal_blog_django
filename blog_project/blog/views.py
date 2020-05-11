@@ -14,3 +14,6 @@ def home(request):
     }
     return render(request, 'blog/home.html',context)
 
+
+def detail(request, slug):
+    pass
