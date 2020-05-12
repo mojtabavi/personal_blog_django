@@ -22,4 +22,4 @@ def detail(request, slug):
 
             
     }
-    return render(request, 'blog/single.html',context)
+    return render(request, 'blog/detail.html',context)
