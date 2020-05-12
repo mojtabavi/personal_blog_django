@@ -16,4 +16,10 @@ def home(request):
 
 
 def detail(request, slug):
-    pass
+     
+    context = {
+        "article" : Article.objects.get(slug=slug)
+        
+            
+    }
+    return render(request, 'blog/detail.html',context)
