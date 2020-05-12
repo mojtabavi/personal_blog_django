@@ -1,8 +1,8 @@
-  {% extends 'blog/base.html'%}
+{% extends 'blog/base.html'%}
 
-  {% load static %}
+{% load static %}
 
-  {% block main %}
+{% block main %}
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('{% static "blog/img/home-bg.jpg" %}')">
     <div class="overlay"></div>
@@ -36,7 +36,7 @@
               on September 24, 2019</p>
           </div>
           <hr>
-          {% endfor %}
+      {% endfor %}
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
@@ -44,4 +44,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
