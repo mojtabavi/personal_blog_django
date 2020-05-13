@@ -4,6 +4,25 @@ from extensions.utils import jalali_convertor
 
 # Create your models here.
 
+class Category(models.Model):
+    title = models.CharField(max_length=200, verbose_name="عنوان دسته بندی")
+    slug = models.SlugField(max_length=100, unique=True, verbose_name="آدرس دسته بندی")
+    status = models.BooleanField(default=True, verbose_name="آیا نمایش داده شود؟")
+    position = models.IntegerField(verbose_name="پوزیشن")
+
+    class Meta:
+        verbose_name = "دسته"
+        verbose_name_plural = "دسته ها"
+
+    def __str__(self):
+        return self.title
+
+
+
+
+
+
+
 
 class Article(models.Model):
     STATUS_CHOICES = (
