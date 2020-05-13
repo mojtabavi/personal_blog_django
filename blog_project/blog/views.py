@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
-from .models import Article
+from .models import Article, Category
 
 # Create your views here.
 
@@ -8,8 +8,10 @@ from .models import Article
 def home(request):
 
     articles = Article.objects.filter(status="p").order_by('-publish')
+    
     context = {
-        "articles" : articles
+        "articles" : articles,
+        
             
     }
     return render(request, 'blog/home.html',context)
