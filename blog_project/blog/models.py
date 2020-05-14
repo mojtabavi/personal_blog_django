@@ -17,6 +17,9 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status="p")
 
 class Article(models.Model):
     STATUS_CHOICES = (
@@ -25,7 +28,7 @@ class Article(models.Model):
     )
     title = models.CharField(max_length=200, verbose_name="عنوان")
     slug = models.SlugField(max_length=100, unique=True,verbose_name="آدرس مقاله")
-    category = models.ManyToManyField(Category, verbose_name="دسته بندی")
+    category = models.ManyToManyField(Category, verbose_name="دسته بندی", related_name="articles")
     description = models.TextField(verbose_name="محتوا")
     thumbnail = models.ImageField(upload_to="images",verbose_name="تصویر مقاله")
     publish = models.DateTimeField(default=timezone.now,verbose_name="زمان انتشار")
@@ -43,6 +46,11 @@ class Article(models.Model):
     def jpublish(self):
         return jalali_convertor(self.publish)
     jpublish.short_description = "زمان انتشار"
+
+    def category_published(self):
+        return self.category.filter(status=True)
+
+    objects = ArticleManager()
 
 
 
