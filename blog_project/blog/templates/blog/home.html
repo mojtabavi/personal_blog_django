@@ -27,7 +27,7 @@
               <h2 class="post-title">
                 {{article.title}}
               </h2>
-              <h3 class="post-subtitle">
+              <h3 class="post-subtitle text-justify">
                 {{article.description|truncatewords:30}}
               </h3>
             </a>
@@ -43,11 +43,48 @@
           <hr>
       {% endfor %}
         <!-- Pager -->
+      <!--
         <div class="clearfix" >
           <a class="btn btn-primary float-left" href="#">پست های قدیمی &rarr;</a>
         </div>
       </div>
     </div>
-  </div>
-
+  </div> -->
+<nav aria-label="Page navigation">
+{% if articles.has_other_pages %}
+  <ul class="pagination justify-content-center ">
+    {% if articles.has_previous %}
+      <li class="page-item">
+        <a class="page-link" aria-label="Previous" href="{% url 'blog:home' articles.previous_page_number %}">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
+    </li>
+    {% endif %}
+    {% for i in articles.paginator.page_range %}
+      {% if articles.number == i %}
+        <li class="page-item active">
+          <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
+        </li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="{% url 'blog:home' i %}">{{i}}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if articles.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="{% url 'blog:home' articles.next_page_number %}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">بعدی</a>
+    </li>
+    {% endif %}
+  </ul>
+{% endif %}
+</nav>
 {% endblock %}

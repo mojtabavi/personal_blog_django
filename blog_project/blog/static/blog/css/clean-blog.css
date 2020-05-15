@@ -8,21 +8,29 @@
   src : url(./font/danstevis.otf) format('opentype');
         
 }
+@font-face {
+  font-family: "samim";
+  src: url("./font/Samim.ttf") format('truetype');
+  src:
+  url("./font/Samim.woff") format("woff"),
+  url("./font/Samim.woff2") format("woff2");
+}
+
 body {
   font-size: 20px;
   color: #212529;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 p {
   line-height: 1.5;
   margin: 30px 0;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 p a {
   text-decoration: underline;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 h1,
@@ -32,13 +40,13 @@ h4,
 h5,
 h6 {
   font-weight: 800;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 a {
   color: #212529;
   transition: all 0.2s;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 a:focus, a:hover {
@@ -98,7 +106,7 @@ img::-moz-selection {
   position: absolute;
   border-bottom: 1px solid #e9ecef;
   background-color: white;
-  font-family: "dastnevis";
+  font-family: "samim";
 }
 
 #mainNav .navbar-brand {
