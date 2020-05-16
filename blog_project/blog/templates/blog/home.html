@@ -21,6 +21,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+      {% if not articles %}
+      <h3 class="alert alert-dark text-center"> متاسفانه مقاله ای برا نمایش وجود ندارد</h3>
+      {% endif %}
       {% for article in articles %}
         <div class="post-preview">
             <a href="{% url 'blog:detail' article.slug %}">
