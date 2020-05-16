@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 from django.utils import timezone
 from extensions.utils import jalali_convertor
 
@@ -50,6 +51,12 @@ class Article(models.Model):
 
     def category_published(self):
         return self.category.filter(status=True)
+
+    #نمایش عکس های بند انگشتی در پنل ادمین
+    def thumbnail_tag(self):
+        return format_html("<img width=120 src='{}' style='border-radius: 5px;'>".format(self.thumbnail.url))
+    thumbnail_tag.short_description ="عکس بند انگشتی"
+
 
     objects = ArticleManager()
 

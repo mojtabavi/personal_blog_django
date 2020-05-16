@@ -1,0 +1,63 @@
+
+@font-face{
+    font-family: "dastnevis";
+    src : url(./font/danstevis.otf) format('opentype');
+}
+@font-face {
+    font-family: "samim";
+    src: url("./font/Samim.ttf") format('truetype');
+    src:
+    url("./font/Samim.woff") format("woff"),
+    url("./font/Samim.woff2") format("woff2");
+  }
+
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: "samim";
+}
+
+.navbar-nav.ml-auto {
+    margin-left: initial !important;
+    margin-right: auto;
+}
+
+.post-meta {
+    text-align: left;
+}
+
+p {
+    line-height: 1.5;
+    margin: 30px 0;
+    font-family: "samim";
+  }
+  
+  p a {
+    text-decoration: underline;
+    font-family: "samim";
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    font-family: "samim";
+  }
+
+header.masthead .page-heading h1, header.masthead .site-heading h1 {
+    font-size: 40px;
+    margin-top : 0px;
+    padding: 20px;
+}
+
+.post-subtitle.text-justify {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.container{
+    font-family: "samim";
+}
