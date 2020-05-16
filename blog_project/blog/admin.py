@@ -4,6 +4,9 @@ from .models import Article,Category,TitleSettings
 # Register your models here.
 
 
+#Admin Header Change
+admin.site.site_header = 'وبلاگ جنگویی من'
+
 # ساخت اکشن برای پنل ادمین برای منتشر ساختن مقاله ها
 def make_published(self, request, queryset):
     rows_updated = queryset.update(status = 'p')
