@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-          <h3 class="alert alert-info text-center"> دسته بندی:{{category.title}}</h3>
+          <h3 class="alert alert-info text-center"> دسته بندی:{{author.get_full_name}}</h3>
       {% for article in articles %}
         <div class="post-preview">
             <a href="{% url 'blog:detail' article.slug %}">
@@ -33,7 +33,7 @@
               </h3>
             </a>
             <p class="post-meta">نوشته شده توسط
-              <a href="#">علی</a>
+              <a href="#">{{علی}}</a>
               {{article.jpublish}}</p>
               <div>
                 {% for cat in article.category.active %}
@@ -49,7 +49,7 @@
             <ul class="pagination justify-content-center ">
               {% if articles.has_previous %}
                 <li class="page-item">
-                  <a class="page-link" aria-label="Previous" href="{% url 'blog:category' category.slug articles.previous_page_number %}">
+                  <a class="page-link" aria-label="Previous" href="{% url 'blog:author' author.username articles.previous_page_number %}">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
@@ -64,12 +64,12 @@
                     <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
                   </li>
                 {% else %}
-                <li class="page-item"><a class="page-link" href="{% url 'blog:category' category.slug i %}">{{i}}</a></li>
+                <li class="page-item"><a class="page-link" href="{% url 'blog:author' author.username i %}">{{i}}</a></li>
                 {% endif %}
               {% endfor %}
               {% if articles.has_next %}
               <li class="page-item">
-                <a class="page-link" href="{% url 'blog:category' category.slug articles.next_page_number %}" aria-label="Next">
+                <a class="page-link" href="{% url 'blog:author' author.username articles.next_page_number %}" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>

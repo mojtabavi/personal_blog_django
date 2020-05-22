@@ -1,9 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.utils import timezone
 from extensions.utils import jalali_convertor
 
 # Create your models here.
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
 
 class Category(models.Model):
     parent = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name='children',verbose_name='دسته والد' )
@@ -11,6 +15,8 @@ class Category(models.Model):
     slug = models.SlugField(max_length=100, unique=True, verbose_name="آدرس دسته بندی")
     status = models.BooleanField(default=True, verbose_name="آیا نمایش داده شود؟")
     position = models.IntegerField(verbose_name="پوزیشن")
+
+    objects = CategoryManager()
 
     class Meta:
         verbose_name = "دسته"
@@ -28,6 +34,7 @@ class Article(models.Model):
         ('d', 'پیش نویس'),
         ('p', 'منتشر شده'),
     )
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="articles", verbose_name="نویسنده")
     title = models.CharField(max_length=200, verbose_name="عنوان")
     slug = models.SlugField(max_length=100, unique=True,verbose_name="آدرس مقاله")
     category = models.ManyToManyField(Category, verbose_name="دسته بندی", related_name="articles")

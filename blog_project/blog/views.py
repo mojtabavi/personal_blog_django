@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
 from .models import Article, Category
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -50,3 +51,23 @@ def category(request, slug, page=1):
         "articles" : articles_cg,            
     }
     return render(request, 'blog/category.html',context)
+
+
+
+def author(request, username, page=1):
+    author_obj = get_object_or_404(User, username = username)
+    author_list = author_obj.articles.published()
+    paginator = Paginator(author_list, 3)
+
+    try:
+        articles_cg = paginator.page(page)
+    except PageNotAnInteger:
+        articles_cg = paginator.page(1)
+    except EmptyPage:
+        articles_cg = paginator.page(paginator.num_pages)
+    
+    context = {
+        "author" : author_obj,
+        "articles" : articles_cg,            
+    }
+    return render(request, 'blog/author.html',context)
