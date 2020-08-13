@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'account.apps.AccountConfig',
     'extensions',
 ]
 
@@ -127,3 +128,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+#Login and Security
+LOGIN_REDIRECT_URL = 'account:home'
+LOGIN_URL = 'account:login'
