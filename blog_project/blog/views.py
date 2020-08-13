@@ -1,3 +1,4 @@
+from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, Http404
 from .models import Article, Category
@@ -7,25 +8,31 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 #first page of site
-def home(request, page=1):
+# def home(request, page=1):
 
-    article_list = Article.objects.published().order_by('-publish')
-    paginator = Paginator(article_list, 3)
+#     article_list = Article.objects.published().order_by('-publish')
+#     paginator = Paginator(article_list, 3)
 
-    try:
-        articles = paginator.page(page)
-    except PageNotAnInteger:
-        articles = paginator.page(1)
-    except EmptyPage:
-        articles = paginator.page(paginator.num_pages)
+#     try:
+#         articles = paginator.page(page)
+#     except PageNotAnInteger:
+#         articles = paginator.page(1)
+#     except EmptyPage:
+#         articles = paginator.page(paginator.num_pages)
     
-    context = {
-        "articles" : articles,
+#     context = {
+#         "articles" : articles,
         
             
-    }
-    return render(request, 'blog/home.html',context)
+#     }
+#     return render(request, 'blog/home.html',context)
 
+class ArticleList(ListView):
+    # model = Article
+    template_name = 'blog/home.html'
+    context_object_name = "articles"
+    queryset = Article.objects.published()
+    paginate_by = 3
 
 def detail(request, slug):
     context = {

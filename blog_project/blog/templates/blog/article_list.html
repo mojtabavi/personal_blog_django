@@ -20,7 +20,7 @@
   <!-- Main Content -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="col-lg-8 col-lg-10 mx-auto">
       {% if not articles %}
       <h3 class="alert alert-dark text-center"> متاسفانه مقاله ای برا نمایش وجود ندارد</h3>
       {% endif %}
@@ -45,6 +45,7 @@
           </div>
           <hr>
       {% endfor %}
+     
         <!-- Pager -->
       <!--
         <div class="clearfix" >
@@ -54,11 +55,11 @@
     </div>
   </div> -->
 <nav aria-label="Page navigation">
-{% if articles.has_other_pages %}
+{% if page_obj.has_other_pages %}
   <ul class="pagination justify-content-center ">
-    {% if articles.has_previous %}
+    {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link" aria-label="Previous" href="{% url 'blog:home' articles.previous_page_number %}">
+        <a class="page-link" aria-label="Previous" href="{% url 'blog:home' page_obj.previous_page_number %}">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -67,8 +68,8 @@
       <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
     </li>
     {% endif %}
-    {% for i in articles.paginator.page_range %}
-      {% if articles.number == i %}
+    {% for i in page_obj.paginator.page_range %}
+      {% if page_obj.number == i %}
         <li class="page-item active">
           <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
         </li>
@@ -76,9 +77,9 @@
       <li class="page-item"><a class="page-link" href="{% url 'blog:home' i %}">{{i}}</a></li>
       {% endif %}
     {% endfor %}
-    {% if articles.has_next %}
+    {% if page_obj.has_next %}
     <li class="page-item">
-      <a class="page-link" href="{% url 'blog:home' articles.next_page_number %}" aria-label="Next">
+      <a class="page-link" href="{% url 'blog:home' page_obj.next_page_number %}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
