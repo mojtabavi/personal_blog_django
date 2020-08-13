@@ -61,7 +61,7 @@ class Article(models.Model):
 
     #نمایش عکس های بند انگشتی در پنل ادمین
     def thumbnail_tag(self):
-        return format_html("<img width=120 src='{}' style='border-radius: 5px;'>".format(self.thumbnail.url))
+        return format_html("<img width=140 src='{}' style='border-radius: 5px;'>".format(self.thumbnail.url))
     thumbnail_tag.short_description ="عکس بند انگشتی"
 
 
