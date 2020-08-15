@@ -1,2 +1,9 @@
 {% extends 'registration/base.html' %}
-    <p>{{user.get_full_name}}</p>
+
+{% block title %}
+لیست مقالات
+{% endblock %}
+
+{% block main %}
+{{user.get_full_name}} خوش آمدید
+{% endblock %}
